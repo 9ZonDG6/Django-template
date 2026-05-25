@@ -1,0 +1,26 @@
+from typing import TYPE_CHECKING
+
+from config.settings.env import SILK_ENABLED
+
+if TYPE_CHECKING:
+    from django.http import HttpRequest
+
+if SILK_ENABLED:
+    globals()["INSTALLED_APPS"].append("silk")
+    globals()["MIDDLEWARE"].insert(2, "silk.middleware.SilkyMiddleware")
+
+    SILKY_IGNORED_PREFIXES = (
+        "/admin",
+        "/silk",
+        "/health",
+        "/static",
+        "/media",
+    )
+    SILKY_IGNORED_PREFIXES_WITH_SLASH = tuple(f"{prefix}/" for prefix in SILKY_IGNORED_PREFIXES)
+
+    def silky_intercept(request: HttpRequest) -> bool:
+        """Фильтрация запросов для Silk."""
+        path = request.path
+        return not (path in SILKY_IGNORED_PREFIXES or path.startswith(SILKY_IGNORED_PREFIXES_WITH_SLASH))
+
+    SILKY_INTERCEPT_FUNC = silky_intercept

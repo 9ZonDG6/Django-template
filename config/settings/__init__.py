@@ -1,0 +1,11 @@
+from split_settings.tools import include
+
+include(
+    "env.py",
+    "django.py",
+    "apps.py",
+    "database.py",
+    "silk.py",
+    "axes.py",
+    scope=globals(),
+)
