@@ -84,6 +84,15 @@ wheels = [
 ]
 
 [[package]]
+name = "django-extra-checks"
+version = "0.17.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/63/2b/2ce50c5736d00a39f737944d7a174cef154368b0b10a6164c614a60c22ab/django_extra_checks-0.17.0.tar.gz", hash = "sha256:619f79f37de23931d08539ed97b2b945c2887c73f753eccc98544ffd3f7d3e60", size = 14782, upload-time = "2026-05-21T09:41:27.681Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/58/3d/92f6b4727b936ed293eafad1236600cb7bd36b27d189abea59dd6f65bebf/django_extra_checks-0.17.0-py3-none-any.whl", hash = "sha256:f41e2e4455e5467aa9b3e28500d4d140b9fb9eedf5e42e0fb71498846813608a", size = 21390, upload-time = "2026-05-21T09:41:26.283Z" },
+]
+
+[[package]]
 name = "django-ipware"
 version = "7.0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -163,6 +172,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "django-extra-checks" },
     { name = "django-stubs" },
     { name = "djangorestframework-stubs" },
     { name = "pre-commit" },
@@ -184,6 +194,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "django-extra-checks", specifier = ">=0.17.0" },
     { name = "django-stubs", specifier = ">=6.0.4" },
     { name = "djangorestframework-stubs", specifier = ">=3.17.0" },
     { name = "pre-commit", specifier = ">=4.6.0" },

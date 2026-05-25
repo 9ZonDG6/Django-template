@@ -2,6 +2,7 @@ LOCAL_APPS = []
 
 THIRD_PARTY_APPS = [
     "axes",
+    "extra_checks",
     "rest_framework",
     "corsheaders",
 ]

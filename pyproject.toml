@@ -17,6 +17,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "django-extra-checks>=0.17.0",
     "django-stubs>=6.0.4",
     "djangorestframework-stubs>=3.17.0",
     "pre-commit>=4.6.0",

@@ -7,5 +7,6 @@ include(
     "database.py",
     "silk.py",
     "axes.py",
+    "extra_checks.py",
     scope=globals(),
 )
