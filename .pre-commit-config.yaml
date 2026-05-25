@@ -41,8 +41,8 @@ repos:
 
   - repo: local
     hooks:
-      - id: all-check
-        name: All checks
+      - id: make-check
+        name: Make checks
         entry: make check
         language: system
         pass_filenames: false
