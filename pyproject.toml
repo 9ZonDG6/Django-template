@@ -26,6 +26,7 @@ dev = [
     "django-zeal>=2.2.0",
     "djangorestframework-stubs>=3.17.0",
     "import-linter>=2.11",
+    "ipython>=9.13.0",
     "pre-commit>=4.6.0",
     "ruff>=0.15.14",
     "ty>=0.0.39",
