@@ -1,6 +1,6 @@
-from config.settings.env import DEBUG
+from config.settings.env import ZEAL_ENABLED
 
-if DEBUG:
+if ZEAL_ENABLED:
     globals()["INSTALLED_APPS"].append("zeal")
     globals()["MIDDLEWARE"].insert(2, "zeal.middleware.zeal_middleware")
 

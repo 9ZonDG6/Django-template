@@ -80,7 +80,6 @@ split-on-trailing-comma = true
 check-typed-exception = true
 
 [tool.ruff.lint.per-file-ignores]
-"apps/*/migrations/*.py" = ["D101", "E501", "RUF012"]
 "tests/*.py" = ["S101"]
 "config/settings/__init__.py" = ["RUF067"]
 "**/models.py" = ["D106"]
