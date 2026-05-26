@@ -1,6 +1,6 @@
-.PHONY: check fix createsuperuser server
+.PHONY: check createsuperuser server
 
-MIGRATION_LINTER_EXCLUDE_APPS ?= axes silk
+SAFE_MIGRATIONS_EXCLUDE_APPS ?= axes silk
 
 define run_check
 	@output_file=$$(mktemp); \
@@ -28,7 +28,7 @@ check:
 	$(call run_check,Ty,uv run ty check)
 	$(call run_check,Django check,uv run python manage.py check)
 	$(call run_check,Django makemigrations,uv run python manage.py makemigrations --check --dry-run)
-	$(call run_check,Django safe migrations,uv run python manage.py check_migrations --exclude-apps $(MIGRATION_LINTER_EXCLUDE_APPS))
+	$(call run_check,Django safe migrations,uv run python manage.py check_migrations --exclude-apps $(SAFE_MIGRATIONS_EXCLUDE_APPS))
 	$(call run_check,Django migrate,uv run python manage.py migrate --check,uv run python manage.py showmigrations --plan | grep "\[ \]")
 
 createsuperuser:

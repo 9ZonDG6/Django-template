@@ -8,5 +8,6 @@ include(
     "silk.py",
     "axes.py",
     "extra_checks.py",
+    "zeal.py",
     scope=globals(),
 )

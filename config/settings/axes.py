@@ -1,8 +1,8 @@
 from datetime import timedelta
 
-from config.settings.env import AXES_COOLOFF_MINUTES, AXES_FAILURE_TRIES, DEBUG
+from config.settings.env import AXES_COOLOFF_MINUTES, AXES_ENABLED, AXES_FAILURE_TRIES
 
-if DEBUG:
+if AXES_ENABLED:
     AXES_FAILURE_LIMIT = AXES_FAILURE_TRIES
     AXES_COOLOFF_TIME = timedelta(minutes=AXES_COOLOFF_MINUTES)
 

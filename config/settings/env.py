@@ -14,6 +14,10 @@ DEBUG = env.bool("DEBUG", default=True)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 TIME_ZONE = env("TIME_ZONE", default="Asia/Yekaterinburg")
 
+# Toogle apps
+SILK_ENABLED = env.bool("SILK_ENABLED", default=True)
+AXES_ENABLED = env.bool("AXES_ENABLED", default=True)
+
 # Axes
 AXES_FAILURE_TRIES = env.int("AXES_FAILURE_TRIES", default=5)
 AXES_COOLOFF_MINUTES = env.int("AXES_COOLOFF_MINUTES", default=15)

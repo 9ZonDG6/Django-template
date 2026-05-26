@@ -1,11 +1,11 @@
 from typing import TYPE_CHECKING
 
-from config.settings.env import DEBUG
+from config.settings.env import SILK_ENABLED
 
 if TYPE_CHECKING:
     from django.http import HttpRequest
 
-if DEBUG:
+if SILK_ENABLED:
     globals()["INSTALLED_APPS"].append("silk")
     globals()["MIDDLEWARE"].insert(2, "silk.middleware.SilkyMiddleware")
 
