@@ -25,9 +25,27 @@ dev = [
     "django-stubs>=6.0.4",
     "django-zeal>=2.2.0",
     "djangorestframework-stubs>=3.17.0",
+    "import-linter>=2.11",
     "pre-commit>=4.6.0",
     "ruff>=0.15.14",
     "ty>=0.0.39",
+]
+
+[tool.importlinter]
+root_packages = [
+    "common",
+    "config",
+]
+exclude_type_checking_imports = true
+
+[[tool.importlinter.contracts]]
+name = "Common must not import config"
+type = "forbidden"
+source_modules = [
+    "common",
+]
+forbidden_modules = [
+    "config",
 ]
 
 [tool.ruff]
