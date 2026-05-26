@@ -34,7 +34,10 @@ check:
 
 createsuperuser:
 	@printf "\033[1;34mCreating Django superuser...\033[0m\n"
-	@uv run python manage.py createsuperuser --noinput
+	@DJANGO_SUPERUSER_USERNAME="admin" \
+	DJANGO_SUPERUSER_EMAIL="admin@example.com" \
+	DJANGO_SUPERUSER_PASSWORD="admin" \
+	uv run python manage.py createsuperuser --noinput
 
 server:
 	@printf "\033[1;34mStarting local server...\033[0m\n"
