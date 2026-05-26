@@ -23,3 +23,6 @@ if SILK_ENABLED:
         return not (path in SILKY_IGNORED_PREFIXES or path.startswith(SILKY_IGNORED_PREFIXES_WITH_SLASH))
 
     SILKY_INTERCEPT_FUNC = silky_intercept
+
+    SILKY_AUTHENTICATION = True
+    SILKY_AUTHORISATION = True

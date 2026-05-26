@@ -5,6 +5,7 @@ include(
     "django.py",
     "apps.py",
     "database.py",
+    "logging.py",
     "rest_framework.py",
     "silk.py",
     "axes.py",

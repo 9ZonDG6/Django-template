@@ -18,6 +18,7 @@ TIME_ZONE = env("TIME_ZONE", default="Asia/Yekaterinburg")
 SILK_ENABLED = env.bool("SILK_ENABLED", default=True)
 AXES_ENABLED = env.bool("AXES_ENABLED", default=True)
 ZEAL_ENABLED = env.bool("ZEAL_ENABLED", default=True)
+LOGGING_ENABLED = env.bool("LOGGING_ENABLED", default=True)
 
 # Axes
 AXES_FAILURE_TRIES = env.int("AXES_FAILURE_TRIES", default=5)
