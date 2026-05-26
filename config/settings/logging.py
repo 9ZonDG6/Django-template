@@ -34,7 +34,7 @@ def build_logger(
 ) -> dict[str, object]:
     """Создаёт конфиг logger."""
     return {
-        "handlers": handlers or ["console"],
+        "handlers": ["console"] if handlers is None else handlers,
         "level": level,
         "propagate": propagate,
     }
