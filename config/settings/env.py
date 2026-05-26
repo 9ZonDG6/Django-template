@@ -14,7 +14,7 @@ DEBUG = env.bool("DEBUG", default=True)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 TIME_ZONE = env("TIME_ZONE", default="Asia/Yekaterinburg")
 
-# Toogle apps
+# Toggle apps
 SILK_ENABLED = env.bool("SILK_ENABLED", default=True)
 AXES_ENABLED = env.bool("AXES_ENABLED", default=True)
 
