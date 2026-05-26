@@ -2,9 +2,10 @@ LOCAL_APPS = []
 
 THIRD_PARTY_APPS = [
     "axes",
+    "corsheaders",
+    "django_safe_migrations",
     "extra_checks",
     "rest_framework",
-    "corsheaders",
 ]
 
 INSTALLED_APPS = [

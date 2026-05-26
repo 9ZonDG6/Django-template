@@ -1,23 +1,34 @@
-.PHONY: check createsuperuser server
+.PHONY: check fix createsuperuser server
+
+MIGRATION_LINTER_EXCLUDE_APPS ?= axes silk
 
 define run_check
-	@printf '\n\033[1;34m%s\033[0m\n' "$(1)"
-	@$(2); status=$$?; \
-	if [ $$status -eq 0 ]; then \
-		printf '   \033[0;32m✔ Passed\033[0m\n'; \
+	@output_file=$$(mktemp); \
+	if $(2) > $$output_file 2>&1; then \
+		printf '\n\033[1;34m%s\033[0m   \033[0;32m✔ Passed\033[0m\n' "$(1)"; \
+		if [ -s $$output_file ]; then \
+			awk 'BEGIN { blank = "" } /^[[:space:]]*$$/ { blank = blank $$0 ORS; next } { printf "%s", blank; blank = ""; print }' $$output_file; \
+		fi; \
+		rm -f $$output_file; \
 	else \
-		printf '   \033[0;31m✘ Failed\033[0m\n'; \
+		status=$$?; \
+		printf '\n\033[1;34m%s\033[0m   \033[0;31m✘ Failed\033[0m\n' "$(1)"; \
+		if [ -s $$output_file ]; then \
+			awk 'BEGIN { blank = "" } /^[[:space:]]*$$/ { blank = blank $$0 ORS; next } { printf "%s", blank; blank = ""; print }' $$output_file; \
+		fi; \
+		rm -f $$output_file; \
 		$(if $(3),$(3) || true;) \
 		exit $$status; \
 	fi
 endef
 
 check:
-	$(call run_check,Ruff format,uv run ruff format)
 	$(call run_check,Ruff lint,uv run ruff check --fix)
+	$(call run_check,Ruff format,uv run ruff format)
 	$(call run_check,Ty,uv run ty check)
 	$(call run_check,Django check,uv run python manage.py check)
 	$(call run_check,Django makemigrations,uv run python manage.py makemigrations --check --dry-run)
+	$(call run_check,Django safe migrations,uv run python manage.py check_migrations --exclude-apps $(MIGRATION_LINTER_EXCLUDE_APPS))
 	$(call run_check,Django migrate,uv run python manage.py migrate --check,uv run python manage.py showmigrations --plan | grep "\[ \]")
 
 createsuperuser:

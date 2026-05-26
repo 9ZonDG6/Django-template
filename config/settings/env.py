@@ -14,10 +14,6 @@ DEBUG = env.bool("DEBUG", default=True)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 TIME_ZONE = env("TIME_ZONE", default="Asia/Yekaterinburg")
 
-# Toogle apps
-SILK_ENABLED = env.bool("SILK_ENABLED", default=True)
-AXES_ENABLED = env.bool("AXES_ENABLED", default=True)
-
 # Axes
 AXES_FAILURE_TRIES = env.int("AXES_FAILURE_TRIES", default=5)
 AXES_COOLOFF_MINUTES = env.int("AXES_COOLOFF_MINUTES", default=15)
@@ -30,7 +26,7 @@ POSTGRES_PASSWORD = env("POSTGRES_PASSWORD", default="postgres")
 POSTGRES_HOST = env("POSTGRES_HOST", default="localhost")
 POSTGRES_PORT = env.int("POSTGRES_PORT", default=5432)
 
-# cors
+# CORS
 CORS_ALLOWED_ORIGINS = env.list(
     "CORS_ALLOWED_ORIGINS",
     default=[

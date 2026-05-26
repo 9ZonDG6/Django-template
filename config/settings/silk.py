@@ -1,18 +1,17 @@
 from typing import TYPE_CHECKING
 
-from config.settings.env import SILK_ENABLED
+from config.settings.env import DEBUG
 
 if TYPE_CHECKING:
     from django.http import HttpRequest
 
-if SILK_ENABLED:
+if DEBUG:
     globals()["INSTALLED_APPS"].append("silk")
     globals()["MIDDLEWARE"].insert(2, "silk.middleware.SilkyMiddleware")
 
     SILKY_IGNORED_PREFIXES = (
         "/admin",
         "/silk",
-        "/health",
         "/static",
         "/media",
     )
