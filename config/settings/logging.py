@@ -98,7 +98,7 @@ if LOGGING_ENABLED:
             "django.server": build_logger(["console", "django_server_file"]),
             "django.template": build_logger(["console", "django_templates_file"]),
             "django_safe_migrations": build_logger(["django_safe_migrations_file"]),
-            "rest_framework": build_logger(["console", "rest_framework_file"]),
+            "rest_framework": build_logger(["rest_framework_file"]),
             "axes": build_logger(["axes_file"]),
             "silk": build_logger(["silk_file"]),
             "zeal": build_logger(["zeal_file"]),
