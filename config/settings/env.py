@@ -11,7 +11,7 @@ env.read_env(BASE_DIR / ".env")
 ENVIRONMENT = env("ENVIRONMENT", default="local")
 SECRET_KEY = env("SECRET_KEY", default="django-insecure")
 DEBUG = env.bool("DEBUG", default=True)
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1", "[::1]"])
 TIME_ZONE = env("TIME_ZONE", default="Asia/Yekaterinburg")
 
 # Toggle apps
@@ -48,3 +48,4 @@ CORS_ALLOW_ALL_ORIGINS = env.bool(
     "CORS_ALLOW_ALL_ORIGINS",
     default=ENVIRONMENT == "local",
 )
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])

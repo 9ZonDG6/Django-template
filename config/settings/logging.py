@@ -97,14 +97,14 @@ if LOGGING_ENABLED:
             "django.db.backends": build_logger(["django_db_file"], level=DATABASE_LOG_LEVEL),
             "django.server": build_logger(["console", "django_server_file"]),
             "django.template": build_logger(["console", "django_templates_file"]),
-            "django_safe_migrations": build_logger(["console", "django_safe_migrations_file"]),
+            "django_safe_migrations": build_logger(["django_safe_migrations_file"]),
             "rest_framework": build_logger(["console", "rest_framework_file"]),
             "axes": build_logger(["axes_file"]),
             "silk": build_logger(["silk_file"]),
             "zeal": build_logger(["zeal_file"]),
         },
         "root": {
-            "handlers": ["console", "root_file"],
+            "handlers": ["root_file"],
             "level": DEFAULT_LOG_LEVEL,
         },
     }

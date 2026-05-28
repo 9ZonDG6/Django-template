@@ -30,6 +30,7 @@ check:
 	$(call run_check,Django makemigrations,uv run python manage.py makemigrations --check --dry-run)
 	$(call run_check,Django safe migrations,uv run python manage.py check_migrations --exclude-apps $(SAFE_MIGRATIONS_EXCLUDE_APPS))
 	$(call run_check,Django migrate,uv run python manage.py migrate --check,uv run python manage.py showmigrations --plan | grep "\[ \]")
+	$(call run_check,Dotenv lint,uv run dotenv-linter .env.example)
 	$(call run_check,Import linter,uv run lint-imports)
 
 fix:
