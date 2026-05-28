@@ -1,4 +1,7 @@
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "apps.users.apps.UsersConfig",
+    "apps.authentication.apps.AuthenticationConfig",
+]
 
 THIRD_PARTY_APPS = [
     "corsheaders",
@@ -7,6 +10,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "django_filters",
     "drf_spectacular",
+    "query_counter",
 ]
 
 INSTALLED_APPS = [
