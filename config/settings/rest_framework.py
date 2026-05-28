@@ -24,4 +24,6 @@ REST_FRAMEWORK = {
     "SEARCH_PARAM": "search",
     "ORDERING_PARAM": "ordering",
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }

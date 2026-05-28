@@ -5,6 +5,8 @@ THIRD_PARTY_APPS = [
     "django_safe_migrations",
     "extra_checks",
     "rest_framework",
+    "django_filters",
+    "drf_spectacular",
 ]
 
 INSTALLED_APPS = [
