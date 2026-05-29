@@ -90,7 +90,7 @@ check-typed-exception = true
 "tests/*.py" = ["S101"]
 "**/apps.py" = ["D101"]
 "config/settings/__init__.py" = ["RUF067"]
-"**/models.py" = ["D106"]
+"**/base_model.py" = ["D106"]
 "manage.py" = ["PLC0415"]
 
 [tool.ruff.lint]
@@ -168,7 +168,7 @@ ignore = [
     "RUF001",    # ambiguous unicode character in string: Cyrillic vs Latin
     "RUF002",    # ambiguous unicode character in docstring: Cyrillic
     # "D105",
-    # "D106",
+    "D106",
     # "D107",
     # "PLR6301",   # do not require classmethod / staticmethod when self not used
     #--------------------------

@@ -1,4 +1,4 @@
-.PHONY: check fix createsuperuser server
+.PHONY: check createsuperuser server
 
 SAFE_MIGRATIONS_EXCLUDE_APPS ?= axes silk
 
@@ -23,8 +23,8 @@ define run_check
 endef
 
 check:
-	$(call run_check,Ruff format,uv run ruff format --check)
-	$(call run_check,Ruff lint,uv run ruff check)
+	$(call run_check,Ruff format,uv run ruff format)
+	$(call run_check,Ruff lint,uv run ruff check --fix)
 	$(call run_check,Ty,uv run ty check)
 	$(call run_check,Django check,uv run python manage.py check)
 	$(call run_check,Django makemigrations,uv run python manage.py makemigrations --check --dry-run)
@@ -33,14 +33,9 @@ check:
 	$(call run_check,Dotenv lint,uv run dotenv-linter .env.example)
 	$(call run_check,Import linter,uv run lint-imports)
 
-fix:
-	$(call run_check,Ruff lint,uv run ruff check --fix)
-	$(call run_check,Ruff format,uv run ruff format)
-
 createsuperuser:
 	@printf "\033[1;34mCreating Django superuser...\033[0m\n"
 	@DJANGO_SUPERUSER_USERNAME="admin" \
-	DJANGO_SUPERUSER_EMAIL="admin@example.com" \
 	DJANGO_SUPERUSER_PASSWORD="admin" \
 	uv run python manage.py createsuperuser --noinput
 
