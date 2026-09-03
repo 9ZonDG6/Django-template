@@ -3,6 +3,7 @@ from split_settings.tools import include
 include(
     "env.py",
     "django.py",
+    "security.py",
     "apps.py",
     "database.py",
     "logging.py",

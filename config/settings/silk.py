@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 if SILK_ENABLED:
     globals()["INSTALLED_APPS"].append("silk")
-    globals()["MIDDLEWARE"].insert(2, "silk.middleware.SilkyMiddleware")
+    globals()["MIDDLEWARE"].insert(1, "silk.middleware.SilkyMiddleware")
 
     SILKY_IGNORED_PREFIXES = (
         "/admin",

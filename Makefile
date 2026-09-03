@@ -1,4 +1,4 @@
-.PHONY: check createsuperuser server
+.PHONY: check check-deploy createsuperuser server
 
 SAFE_MIGRATIONS_EXCLUDE_APPS ?= axes silk
 
@@ -23,15 +23,20 @@ define run_check
 endef
 
 check:
+	$(call run_check,Uv lock,uv lock --check)
 	$(call run_check,Ruff format,uv run ruff format)
 	$(call run_check,Ruff lint,uv run ruff check --fix)
 	$(call run_check,Ty,uv run ty check)
+	$(call run_check,Pytest,uv run pytest)
 	$(call run_check,Django check,uv run python manage.py check)
 	$(call run_check,Django makemigrations,uv run python manage.py makemigrations --check --dry-run)
 	$(call run_check,Django safe migrations,uv run python manage.py check_migrations --exclude-apps $(SAFE_MIGRATIONS_EXCLUDE_APPS))
 	$(call run_check,Django migrate,uv run python manage.py migrate --check,uv run python manage.py showmigrations --plan | grep "\[ \]")
 	$(call run_check,Dotenv lint,uv run dotenv-linter .env.example)
 	$(call run_check,Import linter,uv run lint-imports)
+
+check-deploy:
+	$(call run_check,Django check --deploy,ENVIRONMENT=production DEBUG=false SECRET_KEY=$$(uv run python -c "import secrets; print(secrets.token_urlsafe(50))") uv run python manage.py check --deploy)
 
 createsuperuser:
 	@printf "\033[1;34mCreating Django superuser...\033[0m\n"
