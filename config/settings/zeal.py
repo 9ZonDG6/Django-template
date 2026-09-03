@@ -4,8 +4,6 @@ if ZEAL_ENABLED:
     globals()["INSTALLED_APPS"].append("zeal")
 
     middleware: list[str] = globals()["MIDDLEWARE"]
-    # Сразу после SilkyMiddleware, если он включён (см. silk.py), иначе — сразу после
-    # SecurityMiddleware. У zeal нет требований к порядку, в отличие от silk.
     anchor = (
         "silk.middleware.SilkyMiddleware"
         if "silk.middleware.SilkyMiddleware" in middleware
