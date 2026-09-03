@@ -1,3 +1,4 @@
+import logging
 from typing import TYPE_CHECKING
 
 from config.settings.env import BASE_DIR, LOGGING_ENABLED
@@ -48,6 +49,8 @@ def create_log_dir(name: str) -> Path:
 
 
 if LOGGING_ENABLED:
+    logging.captureWarnings(capture=True)
+
     DJANGO_LOG_DIR = create_log_dir("django")
     THIRD_PARTY_LOG_DIR = create_log_dir("third_party")
     ROOT_LOG_DIR = create_log_dir("root")
@@ -69,6 +72,12 @@ if LOGGING_ENABLED:
         "handlers": {
             "console": {
                 "level": DEFAULT_LOG_LEVEL,
+                "class": "logging.StreamHandler",
+                "formatter": "simple",
+                "stream": "ext://sys.stdout",
+            },
+            "console_warnings": {
+                "level": "WARNING",
                 "class": "logging.StreamHandler",
                 "formatter": "simple",
                 "stream": "ext://sys.stdout",
@@ -99,8 +108,9 @@ if LOGGING_ENABLED:
             "django.template": build_logger(["console", "django_templates_file"]),
             "django_safe_migrations": build_logger(["django_safe_migrations_file"]),
             "rest_framework": build_logger(["rest_framework_file"]),
-            "axes": build_logger(["axes_file"]),
+            "axes": build_logger(["console_warnings", "axes_file"]),
             "silk": build_logger(["silk_file"]),
+            "py.warnings": build_logger(["console"]),
             "zeal": build_logger(["zeal_file"]),
         },
         "root": {

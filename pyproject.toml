@@ -39,6 +39,11 @@ dev = [
     "ty>=0.0.39",
 ]
 
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["test_*.py"]
+testpaths = ["apps/*/tests"]
+
 [tool.importlinter]
 root_packages = [
     "common",
@@ -87,11 +92,11 @@ split-on-trailing-comma = true
 check-typed-exception = true
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*.py" = ["S101"]
-"**/apps.py" = ["D101"]
-"config/settings/__init__.py" = ["RUF067"]
-"**/base_model.py" = ["D106"]
-"manage.py" = ["PLC0415"]
+"**/tests/*.py" = ["assert"]
+"**/apps.py" = ["undocumented-public-class"]
+"config/settings/__init__.py" = ["non-empty-init-module"]
+"**/base_model.py" = ["undocumented-public-nested-class"]
+"manage.py" = ["import-outside-top-level"]
 
 [tool.ruff.lint]
 preview = true
@@ -158,17 +163,18 @@ select = [  # https://docs.astral.sh/ruff/rules/
 ]
 
 ignore = [
-    "COM812",    # trailing comma missing
-    "D100",
-    "D104",
-    "DOC501",
-    "DOC201",
-    "EM101",
-    "TRY003",    # long exception messages from `tryceratops`
-    "RUF001",    # ambiguous unicode character in string: Cyrillic vs Latin
-    "RUF002",    # ambiguous unicode character in docstring: Cyrillic
+    "missing-trailing-comma",    # trailing comma missing
+    "undocumented-public-module",
+    "undocumented-public-package",
+    "docstring-missing-exception",
+    "docstring-missing-returns",
+    "raw-string-in-exception",
+    "raise-vanilla-args",    # long exception messages from `tryceratops`
+    "ambiguous-unicode-character-string",    # ambiguous unicode character in string: Cyrillic vs Latin
+    "ambiguous-unicode-character-docstring",    # ambiguous unicode character in docstring: Cyrillic
+    "ambiguous-unicode-character-comment",    # ambiguous unicode character in comment: Cyrillic vs Latin
+    "undocumented-public-nested-class",
     # "D105",
-    "D106",
     # "D107",
     # "PLR6301",   # do not require classmethod / staticmethod when self not used
     #--------------------------
